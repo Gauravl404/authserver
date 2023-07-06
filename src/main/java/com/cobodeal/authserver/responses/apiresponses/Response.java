@@ -2,7 +2,6 @@ package com.cobodeal.authserver.responses.apiresponses;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,11 +14,6 @@ public class Response<T> {
     private String message;
     private Integer message_code;
     private T data;
-
-
-//    Response<T> create(CustomSuccessEnum success, T data){
-//        return new Response<>(success.isStatus(),success.getMessage(),success.getCode(),data);
-//    }
 
     public Response(CustomSuccessEnum success, T data) {
         this.status = success.isStatus();

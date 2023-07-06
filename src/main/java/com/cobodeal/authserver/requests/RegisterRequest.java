@@ -1,15 +1,10 @@
 package com.cobodeal.authserver.requests;
 
-import com.cobodeal.authserver.dto.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Data
 @Builder

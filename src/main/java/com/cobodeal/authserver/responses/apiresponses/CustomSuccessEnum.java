@@ -1,7 +1,5 @@
 package com.cobodeal.authserver.responses.apiresponses;
 
-import com.fasterxml.jackson.databind.annotation.EnumNaming;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 
@@ -27,7 +25,7 @@ public enum CustomSuccessEnum {
         this.message = message;
     }
 
-    private  boolean status = true;
-    private  Integer code;
-    private  String message;
+    private final boolean status;
+    private final Integer code;
+    private final String message;
 }

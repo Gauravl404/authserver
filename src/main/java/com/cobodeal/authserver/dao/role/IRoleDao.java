@@ -1,6 +1,5 @@
 package com.cobodeal.authserver.dao.role;
 
-import com.cobodeal.authserver.dto.Api;
 import com.cobodeal.authserver.dto.Role;
 
 import java.util.List;

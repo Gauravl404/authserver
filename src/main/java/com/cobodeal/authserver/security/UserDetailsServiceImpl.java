@@ -13,12 +13,6 @@ public class UserDetailsServiceImpl implements  UserDetailsService {
 
     public final IUserDao userDao;
 
-
-//    @Override
-//    public User loadUserByUserName(String email) {
-//        return userDao.findByEmail(email).orElseThrow(()->new UsernameNotFoundException("User not found"));
-//    }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userDao.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("User not found"));

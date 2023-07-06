@@ -22,7 +22,7 @@ public enum CustomFailureEnum {
     DELETE_ROLE_FAILED(false,113,"Role deleted successfully");
 
 
-    private boolean status = false;
-    private Integer code;
-    private  String message;
+    private final boolean status;
+    private final Integer code;
+    private final String message;
 }

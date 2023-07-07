@@ -1,5 +1,8 @@
 package com.cobodeal.authserver.dao.role;
 
+
+import com.cobodeal.authserver.constants.MethodType;
+import com.cobodeal.authserver.dto.Api;
 import com.cobodeal.authserver.requests.RolePermissionRequest;
 import com.cobodeal.authserver.responses.RolePermissionsResponse;
 import com.cobodeal.authserver.utils.StringUtil;
@@ -8,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +63,28 @@ public class RolePermissionDaoImpl implements IRolePermissionDao{
 
     @Override
     public Optional<RolePermissionsResponse> getRolePermissions(Integer roleId) {
-        //todo
-        return Optional.empty();
+        try {
+            String sql = "SELECT a.api_id, a.end_point, a.method, a.version, a.status from tbl_role r LEFT JOIN tbl_role_permission p ON r.role_id = p.role_id\n" +
+                    "LEFT JOIN tbl_api a ON a.api_id = p.api_id where r.role_id = ? ;";
+            var apis =  Optional.of(
+                    jdbcTemplate.query(sql,(rs,i)->{
+                        return Api.builder()
+                                .apiId(rs.getInt("api_id"))
+                                .endPoint(rs.getString("end_point"))
+                                .method(MethodType.valueOf(rs.getString("method")))
+                                .version(rs.getInt("version"))
+                                .status(rs.getString("status"))
+                                .build();
+                    },roleId)
+            );
+
+            return Optional.of(RolePermissionsResponse.builder()
+                    .apis(apis.orElse(new ArrayList<>()))
+                    .build());
+
+        } catch (Exception e) {
+            log.error("Failed to get role permissions because {}", e.getMessage());
+            return Optional.empty();
+        }
     }
 }

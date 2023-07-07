@@ -11,6 +11,7 @@ import com.cobodeal.authserver.responses.apiresponses.CustomSuccessEnum;
 import com.cobodeal.authserver.responses.apiresponses.Response;
 import com.cobodeal.authserver.service.IRolesAndPermissionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.util.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -89,11 +90,16 @@ public class RoleAndPermissionServiceImpl implements IRolesAndPermissionService 
     public ResponseEntity<Response<RolePermissionsResponse>> getRolePermissions(Integer roleId) {
 
         var res = rolePermissionDao.getRolePermissions(roleId);
+        Lazy<Role> role = Lazy.of(()->roleDao.getRole(roleId).orElse(Role.builder().build()));
+
         return res
-                .map(value -> new ResponseEntity<>(
-                        new Response<>(
-                                CustomSuccessEnum.ADD_ROLE_PERMISSION_SUCCESS, value)
-                        , HttpStatus.INTERNAL_SERVER_ERROR))
+                .map(value -> {
+                    value.setRole(role.get());
+                    return new ResponseEntity<>(
+                            new Response<>(
+                                    CustomSuccessEnum.ADD_ROLE_PERMISSION_SUCCESS, value)
+                            , HttpStatus.INTERNAL_SERVER_ERROR);
+                })
                 .orElseGet(() -> new ResponseEntity<>(
                 new Response<>(
                         CustomFailureEnum.GET_ROLE_PERMISSION_FAILED, RolePermissionsResponse.builder().build())

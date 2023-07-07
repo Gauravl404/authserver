@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public interface IApiDao {
     List<Api> getAllApis();
-    List<Api>  getApis(List<Integer> ids);
     Optional<Api> getApi(Integer id);
     Optional<Api> createApi(Api api);
 

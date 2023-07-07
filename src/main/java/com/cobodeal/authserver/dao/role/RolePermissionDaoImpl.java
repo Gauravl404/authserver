@@ -40,7 +40,6 @@ public class RolePermissionDaoImpl implements IRolePermissionDao{
 
     @Override
     public Boolean deleteRolePermissions(Integer roleId) {
-
         try {
             String sql = " DELETE FROM tbl_role_permission WHERE role_id = ? ";
             return jdbcTemplate.update(sql,roleId)>0;
@@ -85,6 +84,29 @@ public class RolePermissionDaoImpl implements IRolePermissionDao{
         } catch (Exception e) {
             log.error("Failed to get role permissions because {}", e.getMessage());
             return Optional.empty();
+        }
+    }
+
+    @Override
+    public Boolean checkAuthorizationForApi(String email, String method, String endPoint) {
+        try{
+            String sql = "SELECT \n" +
+                    "    COUNT(a.api_id) > 0 AS is_authorize\n" +
+                    "FROM\n" +
+                    "    tbl_user u\n" +
+                    "        LEFT JOIN\n" +
+                    "    tbl_role_permission p ON u.role_id = p.role_id\n" +
+                    "        LEFT JOIN\n" +
+                    "    tbl_api a ON p.api_id = a.api_id\n" +
+                    "WHERE\n" +
+                    "    u.email = ?\n" +
+                    "        AND a.method = ?\n"+
+                    "        AND a.end_point = ? ";
+
+            return jdbcTemplate.queryForObject(sql, Boolean.class);
+        }catch (Exception e){
+            log.info("Error while validating api {} {} for user {} error={}",method,endPoint,email,e.getMessage());
+            return false;
         }
     }
 }

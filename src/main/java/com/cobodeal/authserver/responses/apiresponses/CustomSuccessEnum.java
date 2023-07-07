@@ -23,7 +23,8 @@ public enum CustomSuccessEnum {
     ADD_ROLE_PERMISSION_SUCCESS(true,16,"API permissions added to role successfully"),
     UPDATE_ROLE_PERMISSION_SUCCESS(true,17,"API permissions updated to role successfully"),
     DELETE_ROLE_PERMISSION_SUCCESS(true,18,"Role permission deleted  successfully"),
-    GET_ROLE_PERMISSION_SUCCESS(true,19,"Role permission fetch successfully")
+    GET_ROLE_PERMISSION_SUCCESS(true,19,"Role permission fetch successfully"),
+    API_AUTHORIZE_SUCCESS(true,20,"API is authorized for user")
     ;
 
     CustomSuccessEnum(boolean status, Integer code, String message) {

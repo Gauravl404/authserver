@@ -15,5 +15,7 @@ public interface IRolePermissionDao {
 
     Optional<RolePermissionsResponse> getRolePermissions(Integer roleId);
 
+    Boolean checkAuthorizationForApi(String email,String method,String endPoint);
+
 
 }

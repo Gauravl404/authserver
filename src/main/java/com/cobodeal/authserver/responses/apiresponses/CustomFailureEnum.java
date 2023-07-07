@@ -25,7 +25,9 @@ public enum CustomFailureEnum {
     ADD_ROLE_PERMISSION_FAILED(false,116,"API permissions added to role failed"),
     UPDATE_ROLE_PERMISSION_FAILED(false,117,"API permissions updated to role failed"),
     DELETE_ROLE_PERMISSION_FAILED(false,118,"Role permission deleted  failed"),
-    GET_ROLE_PERMISSION_FAILED(false,119,"Role permission fetch failed")
+    GET_ROLE_PERMISSION_FAILED(false,119,"Role permission fetch failed"),
+    API_AUTHORIZE_FAILED(true,120,"API is not authorized for user")
+
     ;
 
 

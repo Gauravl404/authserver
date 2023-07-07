@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddRolePermissionRequest {
+public class RolePermissionRequest {
     @JsonProperty("role_id")
     private Integer roleId;
     @JsonProperty("api_ids")

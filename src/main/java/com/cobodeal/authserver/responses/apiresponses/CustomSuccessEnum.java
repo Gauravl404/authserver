@@ -17,7 +17,14 @@ public enum CustomSuccessEnum {
     GET_ROLE_SUCCESS(true,10,"Role fetched success fully"),
     CREATE_ROLE_SUCCESS(true,11,"Role created successfully."),
     UPDATE_ROLE_SUCCESS(true,12,"Role updated successfully"),
-    DELETE_ROLE_SUCCESS(true,13,"Role deleted successfully");
+    DELETE_ROLE_SUCCESS(true,13,"Role deleted successfully"),
+    ASSIGN_ROLE_SUCCESS(true,14,"Role assigned successfully"),
+    GET_ASSIGNED_ROLE_SUCCESS(true,15,"Assigned role fetch successfully"),
+    ADD_ROLE_PERMISSION_SUCCESS(true,16,"API permissions added to role successfully"),
+    UPDATE_ROLE_PERMISSION_SUCCESS(true,17,"API permissions updated to role successfully"),
+    DELETE_ROLE_PERMISSION_SUCCESS(true,18,"Role permission deleted  successfully"),
+    GET_ROLE_PERMISSION_SUCCESS(true,19,"Role permission fetch successfully")
+    ;
 
     CustomSuccessEnum(boolean status, Integer code, String message) {
         this.status = status;

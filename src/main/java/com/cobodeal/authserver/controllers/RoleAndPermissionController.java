@@ -1,6 +1,6 @@
 package com.cobodeal.authserver.controllers;
 
-import com.cobodeal.authserver.requests.AddRolePermissionRequest;
+import com.cobodeal.authserver.requests.RolePermissionRequest;
 import com.cobodeal.authserver.responses.RolePermissionsResponse;
 import com.cobodeal.authserver.responses.apiresponses.Response;
 import com.cobodeal.authserver.service.IRolesAndPermissionService;
@@ -17,12 +17,12 @@ public class RoleAndPermissionController {
 
     private final IRolesAndPermissionService rolesAndPermissionService;
     @PostMapping("/add")
-    public ResponseEntity<Response<String>> addAPIForRole(@RequestBody AddRolePermissionRequest request){
+    public ResponseEntity<Response<String>> addAPIForRole(@RequestBody RolePermissionRequest request){
         return rolesAndPermissionService.addRolePermissions(request);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Response<RolePermissionsResponse>> updateAPIForRole(@RequestBody AddRolePermissionRequest request){
+    public ResponseEntity<Response<Boolean>> updateAPIForRole(@RequestBody RolePermissionRequest request){
         return rolesAndPermissionService.updateRolePermissions(request);
     }
 

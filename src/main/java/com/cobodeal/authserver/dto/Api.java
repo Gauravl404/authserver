@@ -1,5 +1,6 @@
 package com.cobodeal.authserver.dto;
 
+import com.cobodeal.authserver.constants.MethodType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +18,7 @@ public class Api {
     @JsonProperty("end_point")
     private String endPoint;
     @JsonProperty("method")
-    private String method;
+    private MethodType method;
     @JsonProperty("version")
     private Integer version;
     @JsonProperty("status")

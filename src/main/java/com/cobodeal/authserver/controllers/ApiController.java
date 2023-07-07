@@ -30,7 +30,7 @@ public class ApiController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Response<Api>> createApi(@RequestBody Api api ){
+    public ResponseEntity<Response<Api>> createApi(@RequestBody Api api){
         return apiService.createApi(api);
     }
 

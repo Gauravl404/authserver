@@ -78,7 +78,7 @@ public class UserDaoImpl implements IUserDao {
 
     @Override
     public Optional<User> findByVerificationToken(String token) {
-        String sql = "SELECT user_id,first_name, u.email, password, last_name, email_verified, r.role_name,u.role_id  FROM tbl_user u  LEFT JOIN tbl_email_verification e  ON e.email = u.email LEFT JOIN tbl_role r ON r.role_id = u.user_role WHERE e.verification_code = ?";
+        String sql = "SELECT user_id,first_name, u.email, password, last_name, email_verified, r.role_name,u.role_id  FROM tbl_user u  LEFT JOIN tbl_email_verification e  ON e.email = u.email LEFT JOIN tbl_role r ON r.role_id = u.role_id WHERE e.verification_code = ?";
         try {
             return Optional.ofNullable(jdbcTemplate.queryForObject(sql,
                     (rs, i) -> (
